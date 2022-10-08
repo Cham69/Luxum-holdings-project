@@ -13,13 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/users', userRoute);
 
 const port = process.env.PORT || 8000;
+const DB_URI = process.env.MONGODB_URI;
 
 app.listen(port,  () =>{
     console.log(`Server listens at port ${port}`);
     try{
-         mongoose.connect(
-            process.env.MONGODB_URI,
-            {
+         mongoose.connect(DB_URI,{
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             }
