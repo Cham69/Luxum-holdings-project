@@ -4,13 +4,16 @@ const dotEnv = require('dotenv');
 const mongoose = require('mongoose');
 
 const userRoute = require('./routes/userRoutes.js');
+const propertyRoute = require('./routes/propertyRoutes.js');
 const app = express();
 
 dotEnv.config();
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//Using router files
 app.use('/users', userRoute);
+app.use('/properties', propertyRoute);
 
 const port = process.env.PORT || 8000;
 const DB_URI = process.env.MONGODB_URI;

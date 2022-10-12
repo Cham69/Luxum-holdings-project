@@ -50,7 +50,31 @@ exports.userBlock = (req, res) =>{
     res.json(`${username} should be blocked`);
 }
 
-exports.userDelete = (req, res) =>{
+//Delete a single user
+exports.userDelete = async (req, res) =>{
     const username = req.params.username;
-    res.json(`${username} should be deleted`);
+    try{
+        const getUser = await user.findOne({username});
+        if(getUser){
+            await user.deleteOne({username}).then(
+                res.json(`${username} deleted successfully`)
+            )
+        }else{
+            res.json(`No user found with ${username}`)
+        }
+    }catch(error){
+        res.json(error.message);
+    }
+}
+
+//Show all the users
+exports.usersShow = async (req, res) =>{
+    try{
+        const allUsers = await user.find();
+        const fNames = allUsers.map(user=> user.firstName)
+
+        res.json(fNames)
+    }catch(error){
+        res.json(error.message);
+    }
 }

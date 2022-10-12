@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {userLogin, userSignup, userDashboard, userBlock, userDelete, userEdit} = 
+const {userLogin, userSignup, userDashboard, userBlock, userDelete, userEdit, usersShow} = 
 require('../controllers/userController.js');
 
 //Route for user signup
@@ -15,5 +15,7 @@ router.get('/dashboard/:username', userDashboard);
 router.post('/block/:username', userBlock);
 //Route for user deleting
 router.get('/delete/:username', userDelete);
+//Route for user deleting
+router.get('/allusers', usersShow);
 
 module.exports = router;
