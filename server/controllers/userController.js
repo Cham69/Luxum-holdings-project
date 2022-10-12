@@ -1,5 +1,6 @@
 const user = require("../models/userModel.js");
 
+//User login
 exports.userLogin = (req, res) =>{
     res.json('User logged in');
 }
